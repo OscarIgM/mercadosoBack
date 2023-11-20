@@ -7,4 +7,5 @@ import com.example.MercadosoBack.models.user.UserModel;
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Integer> {
     UserModel findByEmail(String email);
+    UserModel findByName(String name);
 }
