@@ -16,7 +16,7 @@ import lombok.Setter;
 public class ShoppingCartModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @OneToOne
     @JoinColumn(name = "user_id")
     private UserModel user;

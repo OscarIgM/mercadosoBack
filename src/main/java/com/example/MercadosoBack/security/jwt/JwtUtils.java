@@ -1,9 +1,9 @@
-package com.example.MercadosoBack.security;
+package com.example.MercadosoBack.security.jwt;
 
 import java.security.Key;
 import java.util.Date;
 
-import com.example.MercadosoBack.services.UserDetailsImpl;
+import com.example.MercadosoBack.models.user.UserDetailsImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +17,6 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
-    private static final String SECRET_KEY="c874af5e11c83a3b14f3d7f3763728a71a23dcb1b91a5294a732fe01364cbdfb";
 
     @Value("${bezkoder.app.jwtSecret}")
     private String jwtSecret;
@@ -36,6 +35,7 @@ public class JwtUtils {
                 .signWith(key(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
     private Key key() {
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(jwtSecret));
     }
@@ -58,6 +58,7 @@ public class JwtUtils {
         } catch (IllegalArgumentException e) {
             logger.error("JWT claims string is empty: {}", e.getMessage());
         }
+
         return false;
     }
 }

@@ -6,12 +6,15 @@ import com.example.MercadosoBack.models.user.UserModel;
 
 import java.util.Optional;
 
+
+
 @Repository
-public interface UserRepository extends JpaRepository<UserModel, Integer> {
+public interface UserRepository extends JpaRepository<UserModel, Long> {
     Optional<UserModel> findByUsername(String username);
-    UserModel findByEmail(String email);
 
     Boolean existsByUsername(String username);
 
     Boolean existsByEmail(String email);
+
+    UserModel findByEmail(String email);
 }

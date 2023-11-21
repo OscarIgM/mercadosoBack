@@ -1,14 +1,16 @@
-package com.example.MercadosoBack.services;
+package com.example.MercadosoBack.models.user;
 
-import com.example.MercadosoBack.models.user.UserModel;
 import com.example.MercadosoBack.repositories.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
     @Autowired
     UserRepository userRepository;
 
@@ -21,3 +23,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return UserDetailsImpl.build(user);
     }
 }
+

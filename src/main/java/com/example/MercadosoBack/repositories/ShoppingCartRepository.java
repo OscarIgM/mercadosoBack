@@ -8,8 +8,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ShoppingCartRepository extends JpaRepository<ShoppingCartModel, Integer> {
+public interface ShoppingCartRepository extends JpaRepository<ShoppingCartModel, Long> {
 
     @Query("SELECT s.user FROM ShoppingCartModel s WHERE s.id = :cartId")
-    UserModel findUserByShoppingCartId(@Param("cartId") Integer cartId);
+    UserModel findUserByShoppingCartId(@Param("cartId") Long cartId);
 }

@@ -1,4 +1,4 @@
-package com.example.MercadosoBack.controllers;
+package com.example.MercadosoBack.controllers.authControllers;
 
 import java.util.HashSet;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import com.example.MercadosoBack.models.user.ERole;
 import com.example.MercadosoBack.models.user.Role;
+import com.example.MercadosoBack.models.user.UserDetailsImpl;
 import com.example.MercadosoBack.models.user.UserModel;
 import com.example.MercadosoBack.payload.request.LoginRequest;
 import com.example.MercadosoBack.payload.request.SignupRequest;
@@ -14,9 +15,9 @@ import com.example.MercadosoBack.payload.response.JwtResponse;
 import com.example.MercadosoBack.payload.response.MessageResponse;
 import com.example.MercadosoBack.repositories.RoleRepository;
 import com.example.MercadosoBack.repositories.UserRepository;
-import com.example.MercadosoBack.security.JwtUtils;
-import com.example.MercadosoBack.services.UserDetailsImpl;
+import com.example.MercadosoBack.security.jwt.JwtUtils;
 import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,8 +31,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
-@CrossOrigin(origins = "http://localhost:5173", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -101,7 +101,7 @@ public class AuthController {
             strRoles.forEach(role -> {
                 switch (role) {
                     case "admin":
-                        Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
+                        Role adminRole = roleRepository.findByName(ERole.ROLE_MODERATOR)
                                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
                         roles.add(adminRole);
 

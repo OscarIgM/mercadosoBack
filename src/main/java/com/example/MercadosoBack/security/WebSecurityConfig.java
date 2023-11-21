@@ -1,8 +1,10 @@
-package com.example.MercadosoBack.config;
+package com.example.MercadosoBack.security;
 
 
-import com.example.MercadosoBack.security.AuthEntryPointJwt;
-import com.example.MercadosoBack.services.UserDetailsServiceImpl;
+
+import com.example.MercadosoBack.models.user.UserDetailsServiceImpl;
+import com.example.MercadosoBack.security.jwt.AuthEntryPointJwt;
+import com.example.MercadosoBack.security.jwt.AuthTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,8 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
-
 @Configuration
 @EnableMethodSecurity
 // (securedEnabled = true,
@@ -32,10 +32,14 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     private AuthEntryPointJwt unauthorizedHandler;
 
     @Bean
-    public AuthEntryPointJwt authenticationJwtTokenFilter() {
+    public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
     }
 
+//  @Override
+//  public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+//    authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+//  }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
@@ -47,7 +51,11 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
         return authProvider;
     }
 
-
+//  @Bean
+//  @Override
+//  public AuthenticationManager authenticationManagerBean() throws Exception {
+//    return super.authenticationManagerBean();
+//  }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
@@ -58,6 +66,18 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+//  @Override
+//  protected void configure(HttpSecurity http) throws Exception {
+//    http.cors().and().csrf().disable()
+//      .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+//      .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+//      .authorizeRequests().antMatchers("/api/auth/**").permitAll()
+//      .antMatchers("/api/test/**").permitAll()
+//      .anyRequest().authenticated();
+//
+//    http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+//  }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {

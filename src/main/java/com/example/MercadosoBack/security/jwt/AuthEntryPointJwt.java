@@ -1,4 +1,4 @@
-package com.example.MercadosoBack.security;
+package com.example.MercadosoBack.security.jwt;
 
 import java.io.IOException;
 import java.util.HashMap;
