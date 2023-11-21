@@ -4,8 +4,14 @@ import org.springframework.stereotype.Repository;
 
 import com.example.MercadosoBack.models.user.UserModel;
 
+import java.util.Optional;
+
 @Repository
 public interface UserRepository extends JpaRepository<UserModel, Integer> {
+    Optional<UserModel> findByUsername(String username);
     UserModel findByEmail(String email);
-    UserModel findByName(String name);
+
+    Boolean existsByUsername(String username);
+
+    Boolean existsByEmail(String email);
 }

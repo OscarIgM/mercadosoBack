@@ -8,7 +8,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +18,7 @@ import java.util.List;
 @Builder
 @Entity
 @Table(name = "users")
-public class UserModel implements UserDetails {
+public class UserModel{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,39 +29,16 @@ public class UserModel implements UserDetails {
     private String email;
     @Column(nullable = false)
     private String password;
-@Enumerated(EnumType.STRING)
-private Role role;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(  name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 @OneToOne
 @JoinColumn(name = "shoppingCart_id")
     private ShoppingCartModel shoppingCart;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
 
-    @Override
-    public String getUsername() {
-        return name;
-    }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }
