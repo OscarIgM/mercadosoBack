@@ -3,14 +3,17 @@ package com.example.MercadosoBack.security;
 
 
 import com.example.MercadosoBack.models.user.UserDetailsServiceImpl;
-import com.example.MercadosoBack.security.jwt.AuthEntryPointJwt;
 import com.example.MercadosoBack.security.jwt.AuthTokenFilter;
+import com.example.MercadosoBack.security.jwt.JwtAuthenticationEntryPoint;
+import com.example.MercadosoBack.security.jwt.JwtAuthenticationFilter;
+import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -24,13 +27,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 // (securedEnabled = true,
 // jsr250Enabled = true,
 // prePostEnabled = true) // by default
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
     @Autowired
-    private AuthEntryPointJwt unauthorizedHandler;
-
+    private JwtAuthenticationFilter jwtAuthenticationFilter;
+@Autowired
+private JwtAuthenticationEntryPoint unauthorizedHandler;
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
         return new AuthTokenFilter();
@@ -92,8 +97,9 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
 
         http.authenticationProvider(authenticationProvider());
 
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore((Filter) authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
+
 }
