@@ -25,7 +25,6 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = "email")
         })
 public class User implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

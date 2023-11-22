@@ -29,12 +29,13 @@ public class SecurityConfig {
     private final AuthenticationProvider authProvider;
     private static final String[] WHITE_LIST_URL = {"/auth/**",
             "/products/**",
-            ""
+            "",
+            "/auth/login"
          };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
     {
-        return http.cors(withDefaults())
+        return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authRequest ->
                         authRequest
