@@ -4,7 +4,7 @@ package com.example.MercadosoBack.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.MercadosoBack.models.user.UserModel;
+import com.example.MercadosoBack.models.user.User;
 import com.example.MercadosoBack.repositories.UserRepository;
 
 import java.util.List;
@@ -15,23 +15,23 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public List<UserModel> getAllUsers() {
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
-    public UserModel getUserById(Long id) {
+    public User getUserById(Integer id) {
         return userRepository.findById(id).orElse(null);
     }
 
-    public UserModel createUser(UserModel user) {
+    public User createUser(User user) {
         return userRepository.save(user);
     }
 
-    public void deleteUser(Long id) {
+    public void deleteUser(Integer id) {
         userRepository.deleteById(id);
     }
 
-    public UserModel getUserByEmail(String email) {
+    public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 }

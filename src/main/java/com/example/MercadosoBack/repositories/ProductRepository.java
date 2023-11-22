@@ -1,7 +1,7 @@
 package com.example.MercadosoBack.repositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import com.example.MercadosoBack.models.ProductModel;
+import com.example.MercadosoBack.models.product.ProductModel;
 
 import java.util.ArrayList;
 

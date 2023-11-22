@@ -4,7 +4,7 @@ package com.example.MercadosoBack.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.MercadosoBack.models.user.UserModel;
+import com.example.MercadosoBack.models.user.User;
 import com.example.MercadosoBack.services.UserService;
 
 import java.util.List;
@@ -17,22 +17,22 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public List<UserModel> getAllUsers() {
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @GetMapping("/{id}")
-    public UserModel getUserById(@PathVariable Long id) {
+    public User getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
     }
 
     @PostMapping
-    public UserModel createUser(@RequestBody UserModel user) {
+    public User createUser(@RequestBody User user) {
        return this.userService.createUser(user);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
+    public void deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
     }
 }

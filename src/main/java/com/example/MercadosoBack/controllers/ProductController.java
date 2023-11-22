@@ -1,6 +1,6 @@
 package com.example.MercadosoBack.controllers;
 
-import com.example.MercadosoBack.models.ProductModel;
+import com.example.MercadosoBack.models.product.ProductModel;
 import com.example.MercadosoBack.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

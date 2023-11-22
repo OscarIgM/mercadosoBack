@@ -1,6 +1,6 @@
 package com.example.MercadosoBack.services;
 
-import com.example.MercadosoBack.models.ProductModel;
+import com.example.MercadosoBack.models.product.ProductModel;
 import com.example.MercadosoBack.repositories.ProductRepository;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;

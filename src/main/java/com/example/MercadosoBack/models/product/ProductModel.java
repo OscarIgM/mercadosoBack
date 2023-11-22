@@ -1,11 +1,9 @@
-package com.example.MercadosoBack.models;
+package com.example.MercadosoBack.models.product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,7 +14,7 @@ import java.util.List;
 public class ProductModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String name;
     private double rating;
     private double cant_rate;

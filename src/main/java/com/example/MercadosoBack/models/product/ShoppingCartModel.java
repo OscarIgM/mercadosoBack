@@ -1,7 +1,7 @@
-package com.example.MercadosoBack.models;
+package com.example.MercadosoBack.models.product;
 import java.util.List;
 
-import com.example.MercadosoBack.models.user.UserModel;
+import com.example.MercadosoBack.models.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,10 +16,10 @@ import lombok.Setter;
 public class ShoppingCartModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @OneToOne
     @JoinColumn(name = "user_id")
-    private UserModel user;
+    private User user;
     @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.ALL)
     private List<ProductModel> products;
 }

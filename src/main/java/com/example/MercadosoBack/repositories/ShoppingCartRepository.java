@@ -1,15 +1,15 @@
 package com.example.MercadosoBack.repositories;
 
-import com.example.MercadosoBack.models.ShoppingCartModel;
-import com.example.MercadosoBack.models.user.UserModel;
+import com.example.MercadosoBack.models.product.ShoppingCartModel;
+import com.example.MercadosoBack.models.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ShoppingCartRepository extends JpaRepository<ShoppingCartModel, Long> {
+public interface ShoppingCartRepository extends JpaRepository<ShoppingCartModel, Integer> {
 
     @Query("SELECT s.user FROM ShoppingCartModel s WHERE s.id = :cartId")
-    UserModel findUserByShoppingCartId(@Param("cartId") Long cartId);
+    User findUserByShoppingCartId(@Param("cartId") Integer cartId);
 }
