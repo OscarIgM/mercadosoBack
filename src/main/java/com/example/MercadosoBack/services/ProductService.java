@@ -11,6 +11,7 @@ import java.util.List;
 @Getter
 @Service
 public class ProductService {
+
     @Autowired
     ProductRepository productRepository;
     
@@ -32,9 +33,7 @@ public class ProductService {
         return productRepository.findByRating(rating);
     }
 
-    public List<ProductModel> getProductsByUserId(Integer userId) {
-        return productRepository.findByUserId(userId);
-    }
+
 
     public boolean deleteProduct(Integer id){
             try {

@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends CrudRepository<ProductModel,Integer>{
     ArrayList<ProductModel> findByRating(double rating);
-    List<ProductModel> findByUserId(Integer userId);
 
+    List<ProductModel> findAllByUserId(Integer id);
 }

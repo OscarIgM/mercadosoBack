@@ -22,7 +22,7 @@ public class ProductController {
     }
 
     @PostMapping()
-        public ProductModel saveProduct(@RequestBody ProductModel product){
+    public ProductModel saveProduct(@RequestBody ProductModel product){
        return this.productService.saveProduct(product);
     }
 
@@ -36,10 +36,6 @@ public class ProductController {
         return this.productService.obtainByRating(rating);
     }
 
-    @GetMapping("/user/{userId}")
-    public List<ProductModel> getProductsByUserId(@PathVariable Integer userId) {
-        return productService.getProductsByUserId(userId);
-    }
 
     @DeleteMapping(path = "/delete/{id}")
         public String deleteProductById(@PathVariable("id") Integer id){
