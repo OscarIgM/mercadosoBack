@@ -1,8 +1,11 @@
 package com.example.MercadosoBack.controllers;
 
+import com.example.MercadosoBack.models.product.CategoryModel;
 import com.example.MercadosoBack.models.product.ProductModel;
 import com.example.MercadosoBack.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -45,6 +48,26 @@ public class ProductController {
         }else {
             return "No se pudo eliminar el usuario con la id"+id;
         }
+    }
+
+    @PostMapping("/categories")
+    public ResponseEntity<String> createCategory(@RequestBody String categoryName) {
+        CategoryModel newCategory = productService.createCategory(categoryName);
+        if (newCategory != null) {
+            return new ResponseEntity<>("Creación de categoría exitoso", HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>("La categoría ya existe", HttpStatus.CONFLICT);
+        }
+    }
+
+    @GetMapping("/categories")
+    public List<String> obtainCategoryNames() {
+        return productService.obtainCategoryNames();
+    }
+
+    @GetMapping("/filterByCategory/{CategoryName}")
+    public List<ProductModel> obtainProductByCategory(@PathVariable String CategoryName) {
+        return productService.obtainProductsByCategory(CategoryName);
     }
 
 

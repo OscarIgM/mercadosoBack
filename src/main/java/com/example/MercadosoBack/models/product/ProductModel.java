@@ -34,4 +34,8 @@ public class ProductModel {
     @JoinColumn(name = "shopping_cart_id")
     private ShoppingCartModel shoppingCart;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private CategoryModel category;
+
 }
