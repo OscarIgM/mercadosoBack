@@ -6,9 +6,12 @@ import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Service
 public class ProductService {
+
     @Autowired
     ProductRepository productRepository;
     
@@ -29,15 +32,18 @@ public class ProductService {
     public ArrayList<ProductModel> obtainByRating(double rating){
         return productRepository.findByRating(rating);
     }
-public boolean deleteProduct(Integer id){
-        try {
-            productRepository.deleteById(id);
-            return true;
-        }
-        catch (Exception err){
-            return false;
-        }
-}
+
+
+
+    public boolean deleteProduct(Integer id){
+            try {
+                productRepository.deleteById(id);
+                return true;
+            }
+            catch (Exception err){
+                return false;
+            }
+    }
 
 }
 

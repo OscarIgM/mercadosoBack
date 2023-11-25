@@ -1,6 +1,7 @@
 package com.example.MercadosoBack.models.user;
 
 
+import com.example.MercadosoBack.models.product.ProductModel;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -35,6 +36,9 @@ public class User implements UserDetails {
     private String password;
     @Enumerated(EnumType.STRING)
     Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<ProductModel> products;
 
 
     @Override
