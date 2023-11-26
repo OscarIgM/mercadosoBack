@@ -57,9 +57,8 @@ public class ProductService {
         newCategory.setName(categoryName);
         return categoryRepository.save(newCategory);
     }
-    public List<String> obtainCategoryNames() {
-        List<CategoryModel> categories = categoryRepository.findAll();
-        return categories.stream().map(CategoryModel::getName).collect(Collectors.toList());
+    public List<CategoryModel> obtainCategories() {
+        return categoryRepository.findAll();
     }
     public List<ProductModel> obtainProductsByCategory(String categoryName){
         CategoryModel category = categoryRepository.findByName(categoryName);

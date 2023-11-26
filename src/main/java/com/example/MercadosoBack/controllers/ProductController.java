@@ -61,8 +61,8 @@ public class ProductController {
     }
 
     @GetMapping("/categories")
-    public List<String> obtainCategoryNames() {
-        return productService.obtainCategoryNames();
+    public List<CategoryModel> obtainCategories() {
+        return productService.obtainCategories();
     }
 
     @GetMapping("/filterByCategory/{CategoryName}")
