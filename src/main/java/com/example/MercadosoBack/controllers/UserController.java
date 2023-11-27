@@ -2,6 +2,8 @@ package com.example.MercadosoBack.controllers;
 
 
 import com.example.MercadosoBack.models.product.ProductModel;
+import com.example.MercadosoBack.models.shopping_cart.ShoppingCartModel;
+import com.example.MercadosoBack.services.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +25,6 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
@@ -42,5 +43,26 @@ public class UserController {
     @GetMapping("/{id}/products")
     public List<ProductModel> getUserProducts(@PathVariable Integer id) {
         return userService.getUserProducts(id);
+    }
+
+    @GetMapping("/{id}/shoppingCart")
+    public List<ShoppingCartModel> getUserShoppingCart(@PathVariable Integer id) {
+        return userService.getUserShoppingCart(id);
+    }
+
+    @PostMapping("/{id}/shoppingCart/{productId}/{quantity}")
+    public ShoppingCartModel saveShoppingCartItem(
+            @PathVariable Integer id,
+            @PathVariable Integer productId,
+            @PathVariable int quantity
+    ) {
+        return userService.saveShoppingCartItem(id, productId, quantity);
+    }
+
+    @DeleteMapping("/{id}/shoppingCart/{productId}")
+    public void deleteShoppingCartItem(
+            @PathVariable Integer id,
+            @PathVariable Integer productId) {
+        userService.deleteShoppingCartItem(id, productId);
     }
 }

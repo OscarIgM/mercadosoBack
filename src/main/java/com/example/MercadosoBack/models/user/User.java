@@ -2,6 +2,7 @@ package com.example.MercadosoBack.models.user;
 
 
 import com.example.MercadosoBack.models.product.ProductModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,12 +34,12 @@ public class User implements UserDetails {
     private String username;
     @Column(unique = true, nullable = false)
     private String email;
+
+    @JsonIgnore
     private String password;
+
     @Enumerated(EnumType.STRING)
     Role role;
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<ProductModel> products;
 
 
     @Override
