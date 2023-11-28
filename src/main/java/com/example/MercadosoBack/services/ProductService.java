@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Service
@@ -48,18 +47,7 @@ public class ProductService {
             return false;
         }
     }
-    public CategoryModel createCategory(String categoryName){
-        CategoryModel existingCategory = categoryRepository.findByName(categoryName);
-        if (existingCategory != null){
-            return null;
-        }
-        CategoryModel newCategory = new CategoryModel();
-        newCategory.setName(categoryName);
-        return categoryRepository.save(newCategory);
-    }
-    public List<CategoryModel> obtainCategories() {
-        return categoryRepository.findAll();
-    }
+
     public List<ProductModel> obtainProductsByCategory(String categoryName){
         CategoryModel category = categoryRepository.findByName(categoryName);
         if (category != null){
