@@ -28,17 +28,14 @@ public class ProductController {
     public ProductModel saveProduct(@RequestBody ProductModel product){
        return this.productService.saveProduct(product);
     }
-
     @GetMapping(path = "/{id}")
         public Optional<Optional<ProductModel>> getProductById(@PathVariable("id")Integer id){
         return Optional.of(Optional.ofNullable(this.productService.obtainById(id)));
     }
-
     @GetMapping(path = "/query")
         public ArrayList<ProductModel>obtainProductByRating(@RequestParam("rating") double rating){
         return this.productService.obtainByRating(rating);
     }
-
 
     @DeleteMapping(path = "/delete/{id}")
         public String deleteProductById(@PathVariable("id") Integer id){
