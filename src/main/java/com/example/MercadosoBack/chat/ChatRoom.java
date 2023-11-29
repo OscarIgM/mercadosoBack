@@ -1,7 +1,9 @@
 package com.example.MercadosoBack.chat;
 
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.*;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
@@ -9,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @Data
+@Document
 public class ChatRoom {
     @Id
     private String id;
