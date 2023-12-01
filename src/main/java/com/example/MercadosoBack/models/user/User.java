@@ -16,7 +16,6 @@ import java.util.Set;
 @Getter
 @Setter
 @Builder
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -64,5 +63,9 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+    @Override
+    public String getUsername() {
+        return this.email;
     }
 }
