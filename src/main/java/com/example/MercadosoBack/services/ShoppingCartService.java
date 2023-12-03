@@ -26,11 +26,6 @@ public class ShoppingCartService {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private ProductRepository productRepository;
 
     public List<ShoppingCartModel> getUserShoppingCart(Integer userId) {
         return shoppingCartRepository.findAllByUserId(userId);
@@ -40,9 +35,7 @@ public User findByUser(User user){
       return shoppingCartRepository.findUserByShoppingCartId(user.getId());
 }
 
-    public List<ShoppingCartModel> getUserShoppingCart(Integer userId) {
-        return shoppingCartRepository.findAllByUserId(userId);
-    }
+
     public void deleteShoppingCartItem(Integer userId, Integer productId) {
         ShoppingCartKey id = new ShoppingCartKey(productId, userId);
         shoppingCartRepository.deleteById(id);
