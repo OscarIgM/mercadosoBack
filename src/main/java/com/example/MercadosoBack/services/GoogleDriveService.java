@@ -20,6 +20,7 @@ import java.util.Arrays;
 public class GoogleDriveService {
 
     public String uploadBasic(MultipartFile file) throws IOException {
+
         // Load pre-authorized user credentials from the environment.
         // TODO(developer) - See https://developers.google.com/identity for
         GoogleCredentials credentials = GoogleCredentials.getApplicationDefault()
@@ -40,7 +41,6 @@ public class GoogleDriveService {
 
         // Use InputStream from MultipartFile directly
         InputStreamContent mediaContent = new InputStreamContent(file.getContentType(), file.getInputStream());
-
         try {
             // Execute the request to upload the file.
             File file2 = service.files().create(fileMetadata, mediaContent)
@@ -66,20 +66,19 @@ public class GoogleDriveService {
                 .createScoped(Arrays.asList(DriveScopes.DRIVE_FILE));
         HttpRequestInitializer requestInitializer = new HttpCredentialsAdapter(
                 credentials);
-
         // Build a new authorized API client service.
         Drive service = new Drive.Builder(new NetHttpTransport(),
                 GsonFactory.getDefaultInstance(),
                 requestInitializer)
-                .setApplicationName("Drive samples")
+                .setApplicationName("mercadoso")
                 .build();
 
         try {
-            OutputStream outputStream = new ByteArrayOutputStream();
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             service.files().get(realFileId)
                     .executeMediaAndDownloadTo(outputStream);
 
-            return (ByteArrayOutputStream) outputStream;
+            return outputStream;
         } catch (GoogleJsonResponseException e) {
             // TODO(developer) - handle error appropriately
             System.err.println("Unable to move file: " + e.getDetails());

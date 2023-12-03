@@ -3,6 +3,10 @@ package com.example.MercadosoBack.controllers;
 import com.example.MercadosoBack.services.GoogleDriveService;
 import com.google.api.services.drive.model.File;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,8 +20,6 @@ public class GoogleDriveController {
 
 @Autowired
 GoogleDriveService googleDriveService;
-
-
     @PostMapping("/upload")
     public String uploadFileToGoogleDrive(@RequestParam("file") MultipartFile file) {
         try {
@@ -27,15 +29,19 @@ GoogleDriveService googleDriveService;
             return "Failed to upload the file to Google Drive: " + e.getMessage();
         }
     }
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/obtainImage")
-    public ByteArrayOutputStream obtainImage(@RequestParam String id){
+    @GetMapping(value = "/obtainImage", produces = "image/jpeg")
+    public ResponseEntity<byte[]> obtainImage(@RequestParam String id) {
         try {
-            return googleDriveService.downloadFile(id);
+            ByteArrayOutputStream imageBytes = googleDriveService.downloadFile(id);
+            byte[] imageByteArray = imageBytes.toByteArray();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_JPEG);
+            headers.setContentLength(imageByteArray.length);
+            return new ResponseEntity<>(imageByteArray, headers, HttpStatus.OK);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
+
 
 }

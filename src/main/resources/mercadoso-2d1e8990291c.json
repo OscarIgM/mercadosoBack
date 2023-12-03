@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "mercadoso",
+  "private_key_id": "2d1e8990291c46ec8160d3ccc1bbbe88f75b1e4b",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCxJdEK1iL5o7OM\nWeFSs8l73lovLu3xZnueYXXMM4G2XzbQRBpa6nktRixbThYB2uw06Nr5koRaDoTA\nt1oVutwKBiCJfCjnH4NbSAG5NI07+JKM0+tnav/o7ZRiC7+4knE5bVZxTXpdKJ//\nFJLLgkF5ZhJ5Qht5XJOzj281iqsb1P3icC/sz8Cg6U92VzNv83XxF2yc64UaXD/Z\nselJ8i2D0WqUB8cCMQuKA9Y1WnOXluVO8elz68qijMNPMHVFw/hBaMj7jxoc5DAA\nppT8Ly5ZBlxuDPC31s3nnU0tSEfUcJCnyB9BPb6++ecWH3ieUi7keCZU+JqyWj17\nRLE1M1RBAgMBAAECggEAHq/3Y5Iu4uIJ44FaeDIu8CdXph7SF2Rye8BUYLh3evlJ\njJCPpDpEHaSvYG3JgC7FhnDkJiHMjbFALAZXM7Z4EcB3+HkquMcLwU9bBRNmeAIa\nmQzJFdRCWr51WvrADqBHvvQC6oPKc8Lq3Ixa1ahN4VLeVmUuTzrLV2q8kCDifWKB\naJh8ZVOnyoFCKlVeEbEE4k3TkOz4H3Xtb5p+L/geKhgP50V01nMWSqoT7KEAm0eT\naqjpoFC6FxLLQEhadLv8pGQub8ZvqagU6RCK5GrLXhmNz99APLmcOY8WTdBLdN98\nmOPyTDr3xgvAHFBXKkKJN0URMXSJR2dYkAlK+Tp9NQKBgQDg3XH2+/kk4FeLD8D8\nZErsdTY9wc5dqyUGBdWvITikakb6f38zV1d9rZ5XKvOHgQxYkntEqX0r1OEGqkzX\neaD6DBIgixVlbLjbeFX1BeVD4QbOqZVqdM3SnBUhTL1EWdKPVGvCSy647mnFIplp\n0tXfECAW7nt/MKPvXNxNfllm+wKBgQDJrPx8gIrojQViRrZ/CyNCRDwmKFUerPoB\n5NGcfD1gjTwxRf+FWc9eJxIecmZxgTeH4gAS9eYZUTPQPM+2IDwgc7DV8cZc5wOy\n2iKrtgfln4GNJiXwd/vb8q5wuMaDvAiPyEnHRrX56JDlULV9hR3XyEvfihPJXJUL\nxUwFw0988wKBgQDROBkeVWmFjxrE735/Fw3DHne+VEGfU2raRLmB/eYGzD+IOPJw\nIZbs/4pwzizSahbDnl8FDrHBA4vvuKpQXgGSRYLkNqRMvzDsOvW3San8UzYTOSQl\nbdJHYCQk3JLJMs2/wCuXFn69YE6XNk8JcDrAFe/VhkTvnaEaSAtOKv4h2wKBgBFM\n66PqiwAECPAzTLh9RhsLK3XCg/rLr+61qF2aMtGzi/RWIuNXnvhetaky+yLFiPP5\nKTR3L7QASUeVz+O5xC6sfgD8ap3Rm3meSNceGHNUSZLIMPz97fciTGCTGUR3vuxG\nrD2SDU5Q6w0g7VDFOJgoMIoOmD/v10FZPXpJFOqNAoGAa2gPIq5AAiCaunWh+xuL\nORckldI/kRYpsaZAn+x7GgvKtUGR6p+jPVk8CggUD1VFuM8xj2fntiz7jebWSO66\niFwBbq/6WkCT3Azz7BUTsM+/B5Jmf0R4J1fnm4GbwkMUJsJFWUsyIT8sZhiyAaZs\nvmMEspjnctymy50FCJnDNlM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "mercadoso@mercadoso.iam.gserviceaccount.com",
+  "client_id": "117845014332613412638",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/mercadoso%40mercadoso.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
