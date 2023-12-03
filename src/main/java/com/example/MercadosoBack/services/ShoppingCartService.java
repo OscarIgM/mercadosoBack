@@ -48,7 +48,6 @@ public User findByUser(User user){
         // Buscar instancias de User y ProductModel por sus id
         User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
         ProductModel product = productRepository.findById(productId).orElseThrow(() -> new EntityNotFoundException("Product not found"));
-
         ShoppingCartKey id = new ShoppingCartKey(productId, userId);
         ShoppingCartModel shoppingCartItem = new ShoppingCartModel();
         shoppingCartItem.setId(id);

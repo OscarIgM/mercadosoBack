@@ -19,10 +19,12 @@ public class SecurityConfig {
     private final AuthenticationProvider authProvider;
     private static final String[] WHITE_LIST_URL = {"/auth/**",
             "/google-drive/**",
+            "/shopping-cart/**",
             "/products/**",
-            "",
+            "/**",
             "/auth/login",
             "/users/**",
+            "/category/**",
          };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception
