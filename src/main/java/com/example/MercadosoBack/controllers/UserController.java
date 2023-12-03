@@ -44,25 +44,4 @@ public class UserController {
     public List<ProductModel> getUserProducts(@PathVariable Integer id) {
         return userService.getUserProducts(id);
     }
-
-    @GetMapping("/{id}/shoppingCart")
-    public List<ShoppingCartModel> getUserShoppingCart(@PathVariable Integer id) {
-        return userService.getUserShoppingCart(id);
-    }
-
-    @PostMapping("/{id}/shoppingCart/{productId}/{quantity}")
-    public ShoppingCartModel saveShoppingCartItem(
-            @PathVariable Integer id,
-            @PathVariable Integer productId,
-            @PathVariable int quantity
-    ) {
-        return userService.saveShoppingCartItem(id, productId, quantity);
-    }
-
-    @DeleteMapping("/{id}/shoppingCart/{productId}")
-    public void deleteShoppingCartItem(
-            @PathVariable Integer id,
-            @PathVariable Integer productId) {
-        userService.deleteShoppingCartItem(id, productId);
-    }
 }

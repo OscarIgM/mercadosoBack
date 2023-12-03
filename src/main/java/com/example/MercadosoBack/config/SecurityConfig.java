@@ -31,7 +31,8 @@ public class SecurityConfig {
             "/products/**",
             "",
             "/auth/login",
-            "/users/**"
+            "/users/**",
+            "/shoppingCart/**"
          };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception

@@ -21,8 +21,6 @@ public class UserService {
     @Autowired
     private ProductRepository productRepository;
 
-    @Autowired
-    private ShoppingCartService shoppingCartService;
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -45,19 +43,4 @@ public class UserService {
         return  productRepository.findAllByUserId(id);
     }
 
-    public List<ShoppingCartModel> getUserShoppingCart(Integer id) {
-        return shoppingCartService.getUserShoppingCart(id);
-    }
-
-    public ShoppingCartModel saveShoppingCartItem(
-            Integer id,
-            Integer productId,
-            int quantity
-    ) {
-        return shoppingCartService.saveShoppingCartItem(id, productId, quantity);
-    }
-
-    public void deleteShoppingCartItem(Integer id, Integer productId) {
-        shoppingCartService.deleteShoppingCartItem(id, productId);
-    }
 }
