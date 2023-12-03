@@ -76,9 +76,9 @@ public class GoogleDriveService {
 
         try {
             OutputStream outputStream = new ByteArrayOutputStream();
-
             service.files().get(realFileId)
                     .executeMediaAndDownloadTo(outputStream);
+
             return (ByteArrayOutputStream) outputStream;
         } catch (GoogleJsonResponseException e) {
             // TODO(developer) - handle error appropriately

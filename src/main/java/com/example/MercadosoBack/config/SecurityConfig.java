@@ -18,13 +18,14 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final AuthenticationProvider authProvider;
     private static final String[] WHITE_LIST_URL = {"/auth/**",
+            "/google-drive/**",
+            "/google-drive/obtainImage",
             "/products/**",
             "",
             "/auth/login",
             "/users/**",
             "/category/**",
-            "/chatroom/**",
-            "/google-drive/**"
+            "/chatroom/**"
          };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception

@@ -27,6 +27,7 @@ GoogleDriveService googleDriveService;
             return "Failed to upload the file to Google Drive: " + e.getMessage();
         }
     }
+    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/obtainImage")
     public ByteArrayOutputStream obtainImage(@RequestParam String id){
         try {

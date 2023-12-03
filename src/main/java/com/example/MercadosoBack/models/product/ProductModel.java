@@ -24,16 +24,9 @@ public class ProductModel {
     private String imageId;
     private double price;
     private int quantity;
-
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "shopping_cart_id")
-    private ShoppingCartModel shoppingCart;
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryModel category;
