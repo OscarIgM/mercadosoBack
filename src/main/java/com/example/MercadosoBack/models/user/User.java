@@ -30,7 +30,10 @@ public class User implements CustomUserDetails {
     private String username;
     @Column(unique = true, nullable = false)
     private String email;
+
+    @JsonIgnore
     private String password;
+
     @Enumerated(EnumType.STRING)
     Role role;
 

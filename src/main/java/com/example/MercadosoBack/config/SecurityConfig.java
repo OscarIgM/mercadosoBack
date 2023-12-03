@@ -23,9 +23,6 @@ public class SecurityConfig {
             "",
             "/auth/login",
             "/users/**",
-            "/category/**",
-            "/chatroom/**",
-            "/shopping-cart/**",
          };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception

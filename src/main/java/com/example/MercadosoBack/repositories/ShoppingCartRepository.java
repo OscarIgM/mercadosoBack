@@ -1,7 +1,8 @@
 package com.example.MercadosoBack.repositories;
 
-import com.example.MercadosoBack.models.shoppingcart.ShoppingCartKey;
-import com.example.MercadosoBack.models.shoppingcart.ShoppingCartModel;
+import com.example.MercadosoBack.models.shopping_cart.ShoppingCartKey;
+import com.example.MercadosoBack.models.shopping_cart.ShoppingCartModel;
+
 import com.example.MercadosoBack.models.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

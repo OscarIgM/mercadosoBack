@@ -2,7 +2,7 @@ package com.example.MercadosoBack.services;
 
 
 import com.example.MercadosoBack.models.product.ProductModel;
-import com.example.MercadosoBack.models.shoppingcart.ShoppingCartModel;
+import com.example.MercadosoBack.models.shopping_cart.ShoppingCartModel;
 import com.example.MercadosoBack.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +22,7 @@ public class UserService {
     private ProductRepository productRepository;
     @Autowired
     private ShoppingCartService shoppingCartService;
+
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -43,7 +44,6 @@ public class UserService {
     public List<ProductModel> getUserProducts(Integer id) {
         return  productRepository.findAllByUserId(id);
     }
-
     public List<ShoppingCartModel> getUserShoppingCart(Integer id) {
         return shoppingCartService.getUserShoppingCart(id);
     }

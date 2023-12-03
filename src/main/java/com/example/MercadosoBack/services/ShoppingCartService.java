@@ -1,8 +1,9 @@
 package com.example.MercadosoBack.services;
 
 import com.example.MercadosoBack.models.product.ProductModel;
-import com.example.MercadosoBack.models.shoppingcart.ShoppingCartKey;
-import com.example.MercadosoBack.models.shoppingcart.ShoppingCartModel;
+import com.example.MercadosoBack.models.shopping_cart.ShoppingCartKey;
+import com.example.MercadosoBack.models.shopping_cart.ShoppingCartModel;
+
 import com.example.MercadosoBack.models.user.User;
 import com.example.MercadosoBack.repositories.ProductRepository;
 import com.example.MercadosoBack.repositories.ShoppingCartRepository;
@@ -25,9 +26,16 @@ public class ShoppingCartService {
     @Autowired
     private ProductRepository productRepository;
 
-    public List<ShoppingCartModel> getAllShoppingCartItems() {
-        return shoppingCartRepository.findAll();
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
+
+    public List<ShoppingCartModel> getUserShoppingCart(Integer userId) {
+        return shoppingCartRepository.findAllByUserId(userId);
     }
+
 public User findByUser(User user){
       return shoppingCartRepository.findUserByShoppingCartId(user.getId());
 }

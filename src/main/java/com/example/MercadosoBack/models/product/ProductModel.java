@@ -1,6 +1,6 @@
 package com.example.MercadosoBack.models.product;
+import com.example.MercadosoBack.models.shopping_cart.ShoppingCartModel;
 import com.example.MercadosoBack.models.user.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,9 +24,12 @@ public class ProductModel {
     private String imageId;
     private double price;
     private int quantity;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryModel category;

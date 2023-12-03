@@ -2,6 +2,8 @@ package com.example.MercadosoBack.controllers;
 
 
 import com.example.MercadosoBack.models.product.ProductModel;
+import com.example.MercadosoBack.models.shopping_cart.ShoppingCartModel;
+import com.example.MercadosoBack.services.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +25,6 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/{id}")
     public User getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
