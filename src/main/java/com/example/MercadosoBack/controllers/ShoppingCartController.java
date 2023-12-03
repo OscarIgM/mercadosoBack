@@ -6,7 +6,13 @@ import com.example.MercadosoBack.services.ShoppingCartService;
 import com.example.MercadosoBack.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
+import com.example.MercadosoBack.models.shoppingcart.ShoppingCartModel;
+import com.example.MercadosoBack.repositories.ProductRepository;
+import com.example.MercadosoBack.services.ProductService;
+import com.example.MercadosoBack.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import com.example.MercadosoBack.services.ShoppingCartService;
 import java.util.List;
 
 @RestController
@@ -23,6 +29,21 @@ public class ShoppingCartController {
     }
 
     @PostMapping("/{id}/{productId}/{quantity}")
+@Autowired
+private UserService userService;
+@Autowired
+private ProductService productService;
+@Autowired
+private ProductRepository productRepository;
+
+
+
+    @GetMapping("/{id}/shoppingCart")
+    public List<ShoppingCartModel> getUserShoppingCart(@PathVariable Integer id) {
+        return userService.getUserShoppingCart(id);
+    }
+
+    @PostMapping("/{id}/shoppingCart/{productId}/{quantity}")
     public ShoppingCartModel saveShoppingCartItem(
             @PathVariable Integer id,
             @PathVariable Integer productId,

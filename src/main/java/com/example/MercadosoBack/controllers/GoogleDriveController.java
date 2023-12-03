@@ -1,40 +1,47 @@
 package com.example.MercadosoBack.controllers;
 
 import com.example.MercadosoBack.services.GoogleDriveService;
+import com.google.api.services.drive.model.File;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/google-drive")
 public class GoogleDriveController {
-    private final GoogleDriveService googleDriveService;
 
-    @Autowired
-    public GoogleDriveController(GoogleDriveService googleDriveService) {
-        this.googleDriveService = googleDriveService;
-    }
-
+@Autowired
+GoogleDriveService googleDriveService;
     @PostMapping("/upload")
     public String uploadFileToGoogleDrive(@RequestParam("file") MultipartFile file) {
         try {
-            String fileId = googleDriveService.uploadFile(file);
-            return "File uploaded with ID: " + fileId;
+            String fileId = googleDriveService.uploadBasic(file);
+            return fileId;//"File uploaded with ID: " +
         } catch (IOException e) {
             return "Failed to upload the file to Google Drive: " + e.getMessage();
         }
     }
-
-    @GetMapping("/getDownloadLink")
-    public String getDownloadLink(@RequestParam String fileId) {
+    @GetMapping(value = "/obtainImage", produces = "image/jpeg")
+    public ResponseEntity<byte[]> obtainImage(@RequestParam String id) {
         try {
-            String directDownloadLink = googleDriveService.getDownloadLink(fileId);
-            return directDownloadLink;
+            ByteArrayOutputStream imageBytes = googleDriveService.downloadFile(id);
+            byte[] imageByteArray = imageBytes.toByteArray();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.IMAGE_JPEG);
+            headers.setContentLength(imageByteArray.length);
+            return new ResponseEntity<>(imageByteArray, headers, HttpStatus.OK);
         } catch (IOException e) {
-            e.printStackTrace();
-            return "Error al obtener el enlace de descarga.";
+            throw new RuntimeException(e);
         }
     }
+
+
 }

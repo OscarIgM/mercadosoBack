@@ -2,7 +2,9 @@ package com.example.MercadosoBack.controllers;
 
 import com.example.MercadosoBack.models.product.CategoryModel;
 import com.example.MercadosoBack.models.product.ProductModel;
+import com.example.MercadosoBack.models.user.User;
 import com.example.MercadosoBack.services.ProductService;
+import com.example.MercadosoBack.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,27 +20,32 @@ import java.util.Optional;
 public class ProductController {
     @Autowired
     ProductService productService;
-
+    @Autowired
+    UserService userService;
     @GetMapping()
         public ArrayList<ProductModel> getProducts(){
         return productService.obtainProducts();
     }
 
     @PostMapping()
-    public ProductModel saveProduct(@RequestBody ProductModel product){
-       return this.productService.saveProduct(product);
+    public ProductModel saveProduct(@RequestBody ProductModel productData){
+       try {
+           User user = userService.getUserById(productData.getUser().getId());
+           productData.setUser(user);
+           return productService.saveProduct(productData);
+       } catch (Exception e) {
+           e.printStackTrace();
+           return null;
+       }
     }
-
     @GetMapping(path = "/{id}")
         public Optional<Optional<ProductModel>> getProductById(@PathVariable("id")Integer id){
         return Optional.of(Optional.ofNullable(this.productService.obtainById(id)));
     }
-
     @GetMapping(path = "/query")
         public ArrayList<ProductModel>obtainProductByRating(@RequestParam("rating") double rating){
         return this.productService.obtainByRating(rating);
     }
-
 
     @DeleteMapping(path = "/delete/{id}")
         public String deleteProductById(@PathVariable("id") Integer id){
@@ -48,21 +55,6 @@ public class ProductController {
         }else {
             return "No se pudo eliminar el usuario con la id"+id;
         }
-    }
-
-    @PostMapping("/categories")
-    public ResponseEntity<String> createCategory(@RequestBody String categoryName) {
-        CategoryModel newCategory = productService.createCategory(categoryName);
-        if (newCategory != null) {
-            return new ResponseEntity<>("Creación de categoría exitoso", HttpStatus.CREATED);
-        } else {
-            return new ResponseEntity<>("La categoría ya existe", HttpStatus.CONFLICT);
-        }
-    }
-
-    @GetMapping("/categories")
-    public List<CategoryModel> obtainCategories() {
-        return productService.obtainCategories();
     }
 
     @GetMapping("/filterByCategory/{CategoryName}")
