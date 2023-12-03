@@ -24,6 +24,7 @@ public class SecurityConfig {
             "/users/**",
             "/category/**",
             "/chatroom/**",
+            "/google-drive/**"
          };
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception

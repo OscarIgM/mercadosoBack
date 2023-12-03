@@ -21,7 +21,7 @@ public class ProductModel {
     private double rating;
     private double cant_rate;
     private String description;
-    private String image;
+    private String imageId;
     private double price;
     private int quantity;
 
