@@ -2,6 +2,7 @@ package com.example.MercadosoBack.models.user;
 
 
 import com.example.MercadosoBack.models.product.ProductModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -33,6 +34,7 @@ public class User implements CustomUserDetails {
     @Enumerated(EnumType.STRING)
     Role role;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<ProductModel> products;
 

@@ -25,7 +25,7 @@ public class ProductModel {
     private double price;
     private int quantity;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
