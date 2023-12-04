@@ -24,6 +24,7 @@ public class SecurityConfig {
             "/**",
             "/auth/login",
             "/users/**",
+            "/purchase-orders/**",
             "/category/**",
          };
     @Bean

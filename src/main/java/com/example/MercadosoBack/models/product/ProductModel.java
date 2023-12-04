@@ -1,4 +1,5 @@
 package com.example.MercadosoBack.models.product;
+import com.example.MercadosoBack.models.order.PurchaseOrder;
 import com.example.MercadosoBack.models.shopping_cart.ShoppingCartModel;
 import com.example.MercadosoBack.models.user.User;
 import jakarta.persistence.*;
@@ -33,5 +34,8 @@ public class ProductModel {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryModel category;
+    @ManyToOne
+    @JoinColumn(name = "purchase_order_id") // Ajusta el nombre de la columna según tu base de datos
+    private PurchaseOrder purchaseOrder;
 
 }

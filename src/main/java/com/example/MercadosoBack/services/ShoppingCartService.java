@@ -26,6 +26,13 @@ public class ShoppingCartService {
     @Autowired
     private ProductRepository productRepository;
 
+    public void deleteShoppingCart(Integer userId) {
+        List<ShoppingCartModel> shoppingCartItems = shoppingCartRepository.findAllByUserId(userId);
+
+        for (ShoppingCartModel item : shoppingCartItems) {
+            shoppingCartRepository.deleteById(item.getId());
+        }
+    }
 
     public List<ShoppingCartModel> getUserShoppingCart(Integer userId) {
         return shoppingCartRepository.findAllByUserId(userId);
