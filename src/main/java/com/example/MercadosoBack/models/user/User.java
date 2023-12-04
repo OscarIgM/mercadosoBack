@@ -74,4 +74,8 @@ public class User implements CustomUserDetails {
     public String getName() {
         return this.username;
     }
+    @Override
+    public String getRole() {
+        return this.role.toString();
+    }
 }
