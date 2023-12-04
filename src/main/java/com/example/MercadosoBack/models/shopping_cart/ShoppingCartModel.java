@@ -33,9 +33,5 @@ public class ShoppingCartModel {
     @Column(nullable = false)
     private int quantity;
 
-    @ManyToOne
-    @JoinColumn(name = "purchase_order_id")  // Nombre de la columna en ShoppingCartModel que referencia a PurchaseOrder
-    private PurchaseOrder purchaseOrder;
-
 }
 

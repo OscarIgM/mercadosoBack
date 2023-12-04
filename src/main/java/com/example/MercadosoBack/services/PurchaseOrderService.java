@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PurchaseOrderService {
@@ -27,15 +28,22 @@ public class PurchaseOrderService {
         return purchaseOrderRepository.findByUserId(userId);
     }
 
-
     public PurchaseOrder createOrder(Integer userId) {
-PurchaseOrder order = new PurchaseOrder();
-        List<ShoppingCartModel> shoppingCartModel= shoppingCartService.getUserShoppingCart(userId);
-        System.out.println("datos a obtener"+ shoppingCartModel.stream());
+        PurchaseOrder order = new PurchaseOrder();
+        List<ShoppingCartModel> shoppingCartModel = shoppingCartService.getUserShoppingCart(userId);
+
+        // Mapear ShoppingCartModel a ProductModel
+        List<ProductModel> products = shoppingCartModel.stream()
+                .map(ShoppingCartModel::getProduct)
+                .collect(Collectors.toList());
         order.setUser(userService.getUserById(userId));
-        order.setItems(shoppingCartModel);
+        order.setItems(products);
         order.setOrderStatus("Pending");
         purchaseOrderRepository.save(order);
+
+        // Eliminar el carrito de compras después de crear la orden
+        shoppingCartService.deleteShoppingCart(userId);
+
         return order;
     }
 }

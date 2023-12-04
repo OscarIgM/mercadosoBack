@@ -34,5 +34,4 @@ public class ProductModel {
     @JoinColumn(name = "category_id")
     private CategoryModel category;
 
-
 }

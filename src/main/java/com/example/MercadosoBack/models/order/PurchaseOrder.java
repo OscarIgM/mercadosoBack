@@ -26,8 +26,10 @@ public class PurchaseOrder {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL)
-    private List<ShoppingCartModel> items;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private List<ProductModel> items;
 
     @Column(nullable = false)
     private String orderStatus;

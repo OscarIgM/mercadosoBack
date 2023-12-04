@@ -30,8 +30,11 @@ private ProductService productService;
 
     public void deleteShoppingCart(Integer userId) {
         List<ShoppingCartModel> shoppingCartItems = shoppingCartRepository.findAllByUserId(userId);
+
         for (ShoppingCartModel item : shoppingCartItems) {
-            shoppingCartRepository.deleteById(item.getId());
+            ShoppingCartKey shoppingCartKey= new ShoppingCartKey(item.getProduct().getId(), userId);
+            System.out.println("item borrado es "+shoppingCartKey);
+            shoppingCartRepository.deleteById(shoppingCartKey);
         }
     }
 

@@ -5,6 +5,7 @@ import com.example.MercadosoBack.models.product.ProductModel;
 import com.example.MercadosoBack.models.shopping_cart.ShoppingCartModel;
 import com.example.MercadosoBack.services.ProductService;
 import com.example.MercadosoBack.services.PurchaseOrderService;
+import com.example.MercadosoBack.services.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,8 @@ public class PurchaseOrderController {
     private PurchaseOrderService purchaseOrderService;
 @Autowired
 private ProductService productService;
+@Autowired
+private ShoppingCartService shoppingCartService;
     @GetMapping("/user/{userId}")
     public List<PurchaseOrder> getAllOrdersByUser(@PathVariable Integer userId) {
         return purchaseOrderService.getAllOrdersByUser(userId);
@@ -28,7 +31,9 @@ private ProductService productService;
     @PostMapping("/createOrder/{userId}")
     public PurchaseOrder createOrder(@PathVariable Integer userId) {
         System.out.println("Id recibida con éxito: " + userId);
-        return purchaseOrderService.createOrder(userId);
+        PurchaseOrder order= purchaseOrderService.createOrder(userId);
+        shoppingCartService.deleteShoppingCart(userId);
+        return order;
     }
 
 
