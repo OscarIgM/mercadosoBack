@@ -30,12 +30,9 @@ public class ProductModel {
     @JoinColumn(name = "user_id")
     private User user;
 
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private CategoryModel category;
-    @ManyToOne
-    @JoinColumn(name = "purchase_order_id") // Ajusta el nombre de la columna según tu base de datos
-    private PurchaseOrder purchaseOrder;
+
 
 }

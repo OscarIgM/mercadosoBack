@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.MercadosoBack.repositories.ProductRepository;
 import com.example.MercadosoBack.services.ProductService;
 import java.util.List;
-@CrossOrigin(origins = "http://localhost:5173", methods = { RequestMethod.POST })
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/shopping-cart")
 public class ShoppingCartController {
@@ -34,10 +34,10 @@ public class ShoppingCartController {
     }
 
 
-    @DeleteMapping("/{id}/{productId}")
+    @DeleteMapping("/delete-product")
     public void deleteShoppingCartItem(
-            @PathVariable Integer id,
-            @PathVariable Integer productId) {
+            @RequestParam Integer id,
+            @RequestParam Integer productId) {
         shoppingCartService.deleteShoppingCartItem(id, productId);
     }
 }

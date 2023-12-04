@@ -15,7 +15,7 @@ import java.util.List;
 public class ProductService {
 
     @Autowired
-    ProductRepository productRepository;
+ private ProductRepository productRepository;
     @Autowired
     CategoryRepository categoryRepository;
     
@@ -39,13 +39,8 @@ public class ProductService {
 
 
 
-    public boolean deleteProduct(Integer id) {
-        try {
-            productRepository.deleteById(id);
-            return true;
-        } catch (Exception err) {
-            return false;
-        }
+    public void deleteProduct(Integer id) {
+    productRepository.deleteById(id);
     }
 
     public List<ProductModel> obtainProductsByCategory(String categoryName){

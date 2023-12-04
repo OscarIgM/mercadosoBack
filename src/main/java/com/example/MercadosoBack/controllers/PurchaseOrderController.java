@@ -1,11 +1,14 @@
 package com.example.MercadosoBack.controllers;
 
 import com.example.MercadosoBack.models.order.PurchaseOrder;
+import com.example.MercadosoBack.models.product.ProductModel;
 import com.example.MercadosoBack.models.shopping_cart.ShoppingCartModel;
+import com.example.MercadosoBack.services.ProductService;
 import com.example.MercadosoBack.services.PurchaseOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:5173")
@@ -15,15 +18,19 @@ public class PurchaseOrderController {
 
     @Autowired
     private PurchaseOrderService purchaseOrderService;
-
+@Autowired
+private ProductService productService;
     @GetMapping("/user/{userId}")
     public List<PurchaseOrder> getAllOrdersByUser(@PathVariable Integer userId) {
         return purchaseOrderService.getAllOrdersByUser(userId);
     }
 
-    @PostMapping("/createOrder")
-    public List<PurchaseOrder> createOrder(@RequestBody ShoppingCartModel shoppingCartModel){
-        return purchaseOrderService.createOrder(shoppingCartModel);
+    @PostMapping("/createOrder/{userId}")
+    public PurchaseOrder createOrder(@PathVariable Integer userId) {
+        System.out.println("Id recibida con éxito: " + userId);
+        return purchaseOrderService.createOrder(userId);
     }
+
+
 
 }

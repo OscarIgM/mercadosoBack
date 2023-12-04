@@ -22,13 +22,14 @@ public class ShoppingCartService {
     private ShoppingCartRepository shoppingCartRepository;
     @Autowired
     private UserRepository userRepository;
-
+@Autowired
+private ProductService productService;
     @Autowired
     private ProductRepository productRepository;
 
+
     public void deleteShoppingCart(Integer userId) {
         List<ShoppingCartModel> shoppingCartItems = shoppingCartRepository.findAllByUserId(userId);
-
         for (ShoppingCartModel item : shoppingCartItems) {
             shoppingCartRepository.deleteById(item.getId());
         }
@@ -45,6 +46,7 @@ public User findByUser(User user){
 
     public void deleteShoppingCartItem(Integer userId, Integer productId) {
         ShoppingCartKey id = new ShoppingCartKey(productId, userId);
+        System.out.println(id);
         shoppingCartRepository.deleteById(id);
     }
 
@@ -52,7 +54,6 @@ public User findByUser(User user){
             Integer userId,
             Integer productId,
             int quantity) {
-        // Buscar instancias de User y ProductModel por sus id
         User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not found"));
         ProductModel product = productRepository.findById(productId).orElseThrow(() -> new EntityNotFoundException("Product not found"));
         ShoppingCartKey id = new ShoppingCartKey(productId, userId);

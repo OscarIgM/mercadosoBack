@@ -48,13 +48,9 @@ public class ProductController {
     }
 
     @DeleteMapping(path = "/delete/{id}")
-        public String deleteProductById(@PathVariable("id") Integer id){
-        boolean ok=this.productService.deleteProduct(id);
-        if(ok){
-            return "Se elemino el usuario con id"+id;
-        }else {
-            return "No se pudo eliminar el usuario con la id"+id;
-        }
+        public boolean deleteProductById(@PathVariable("id") Integer id){
+   productService.deleteProduct(id);
+        return true;
     }
 
     @GetMapping("/filterByCategory/{CategoryName}")

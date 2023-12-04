@@ -1,6 +1,7 @@
 package com.example.MercadosoBack.models.shopping_cart;
 import java.util.List;
 
+import com.example.MercadosoBack.models.order.PurchaseOrder;
 import com.example.MercadosoBack.models.product.ProductModel;
 import com.example.MercadosoBack.models.user.User;
 import jakarta.persistence.*;
@@ -31,5 +32,10 @@ public class ShoppingCartModel {
 
     @Column(nullable = false)
     private int quantity;
+
+    @ManyToOne
+    @JoinColumn(name = "purchase_order_id")  // Nombre de la columna en ShoppingCartModel que referencia a PurchaseOrder
+    private PurchaseOrder purchaseOrder;
+
 }
 
