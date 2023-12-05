@@ -44,4 +44,9 @@ public class UserController {
     public List<ProductModel> getUserProducts(@PathVariable Integer id) {
         return userService.getUserProducts(id);
     }
+
+    @PutMapping("/{id}")
+    public User updateUser(@PathVariable Integer id, @RequestBody User updateUser) {
+        return userService.updateUser(id, updateUser);
+    }
 }
