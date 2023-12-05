@@ -32,16 +32,16 @@ public class PurchaseOrderService {
         PurchaseOrder order = new PurchaseOrder();
         List<ShoppingCartModel> shoppingCartModel = shoppingCartService.getUserShoppingCart(userId);
 
-        // Mapear ShoppingCartModel a ProductModel
         List<ProductModel> products = shoppingCartModel.stream()
                 .map(ShoppingCartModel::getProduct)
                 .collect(Collectors.toList());
+
+        // Clona la lista de productos para evitar la referencia compartida
+        order.setItems(new ArrayList<>(products));
         order.setUser(userService.getUserById(userId));
-        order.setItems(products);
         order.setOrderStatus("Pending");
         purchaseOrderRepository.save(order);
 
-        // Eliminar el carrito de compras después de crear la orden
         shoppingCartService.deleteShoppingCart(userId);
 
         return order;

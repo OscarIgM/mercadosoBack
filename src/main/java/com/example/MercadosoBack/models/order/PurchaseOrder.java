@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -27,10 +28,13 @@ public class PurchaseOrder {
     private User user;
 
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id")
-    private List<ProductModel> items;
-
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "order_product",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private List<ProductModel> items = new ArrayList<>();
     @Column(nullable = false)
     private String orderStatus;
 }
