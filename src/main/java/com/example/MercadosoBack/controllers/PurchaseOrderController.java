@@ -5,6 +5,8 @@ import com.example.MercadosoBack.services.ProductService;
 import com.example.MercadosoBack.services.PurchaseOrderService;
 import com.example.MercadosoBack.services.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -30,6 +32,15 @@ private ShoppingCartService shoppingCartService;
         return order;
     }
 
+    @DeleteMapping("/{userId}/{orderId}")
+    public ResponseEntity<String> deleteOrder(@PathVariable Integer userId, @PathVariable Integer orderId) {
+        try {
+            purchaseOrderService.deleteOrder(userId, orderId);
+            return ResponseEntity.ok("orden borrada con exito");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
 
 
 }
