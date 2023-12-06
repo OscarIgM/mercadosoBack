@@ -57,6 +57,10 @@ public class ProductController {
     public List<ProductModel> obtainProductByCategory(@PathVariable String CategoryName) {
         return productService.obtainProductsByCategory(CategoryName);
     }
+    @GetMapping("/search/{query}")
+    public List<ProductModel> searchProducts(@PathVariable String query) {
+        return productService.searchProductsByName(query);
+    }
 
 
 

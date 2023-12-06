@@ -50,6 +50,10 @@ public class ProductService {
         }
         return null;
     }
+    public List<ProductModel> searchProductsByName(String query){
+        String formattedQuery = query.trim().toLowerCase();
+        return productRepository.findByNameContainingIgnoreCase(formattedQuery);
+    }
 
 }
 
