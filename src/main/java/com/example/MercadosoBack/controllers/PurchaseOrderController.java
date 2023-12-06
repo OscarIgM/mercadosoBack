@@ -23,6 +23,15 @@ private ShoppingCartService shoppingCartService;
     public List<PurchaseOrder> getAllOrdersByUser(@PathVariable Integer userId) {
         return purchaseOrderService.getAllOrdersByUser(userId);
     }
+    @GetMapping("/ownerOrders/{ownerId}")
+    public List<PurchaseOrder> getOwnersOrders(@PathVariable Integer ownerId) {
+        return purchaseOrderService.ownersOrders(ownerId);
+    }
+@PutMapping("/set-status")
+public PurchaseOrder setStatus(@RequestParam String status,@RequestParam Integer orderId) {
+  return purchaseOrderService.setStatus(status,orderId);
+}
+
 
     @PostMapping("/createOrder/{userId}")
     public PurchaseOrder createOrder(@PathVariable Integer userId) {
