@@ -1,46 +1,48 @@
 package com.example.MercadosoBack.chat;
 
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class ChatRoomService {
-    private final ChatRoomRepository chatRoomRepository;
 
-public Optional<String> getChatRoomId(  String senderId,
-                                        String recipientId,
-                                        boolean createNewRoomIfNotExists ){
-    return chatRoomRepository.findBySenderIdAndRecipientId(senderId,recipientId)
-            .map(ChatRoom::getChatId)
-            .or(()->{
-                if(createNewRoomIfNotExists){
-                    var chatId=createChatId(senderId,recipientId);
-                    return Optional.of(chatId);
-                }
-                return Optional.empty();
+    @Autowired
+    private ChatRoomRepository chatRoomRepository;
 
-            });
+    @Autowired
+    private MessageRepository messageRepository;
 
-}
-    private String createChatId(String senderId, String recipientId){
-    var chatId = String.format("%s_%s",senderId,recipientId);
-    ChatRoom senderRecipient = ChatRoom.builder()
-            .chatId(chatId)
-            .senderId(senderId)
-            .recipientId(recipientId)
-            .build();
-        ChatRoom recipientSender = ChatRoom.builder()
-                .chatId(chatId)
-                .senderId(recipientId)
-                .recipientId(senderId)
+    public ChatRoom createChatRoom(String sellerId, String buyerId, String productId) {
+        ChatRoom chatRoom = ChatRoom.builder()
+                .sellerId(sellerId)
+                .buyerId(buyerId)
+                .productId(productId)
                 .build();
 
-        chatRoomRepository.save(senderRecipient);
-        chatRoomRepository.save(recipientSender);
-    return chatId;
+        return chatRoomRepository.save(chatRoom);
+    }
+    public List<ChatRoom> getAllChatRooms() {
+        return chatRoomRepository.findAll();
+    }
+    public List<ChatRoom> getAllChatRoomsForUser(String userId) {
+        return chatRoomRepository.findBySellerIdOrBuyerId(userId, userId);
+    }
+    public Optional<ChatRoom> getById(String id){
+        return chatRoomRepository.findById(id);
     }
 
+    public Optional<ChatRoom> getChatRoom(String sellerId, String buyerId) {
+        return chatRoomRepository.findBySellerIdAndBuyerId(sellerId, buyerId);
+    }
+
+    public Message saveMessage(Message message) {
+        return messageRepository.save(message);
+    }
+
+    public List<Message> getMessagesBySenderId(String senderId) {
+        return messageRepository.findBySenderId(senderId);
+    }
 }

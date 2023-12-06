@@ -54,7 +54,6 @@ public class PurchaseOrderService {
         if (!order.getUser().getId().equals(userId)) {
             throw new RuntimeException("Order does not belong to the specified user");
         }
-        // Desvincula la relación sin eliminar los productos de la base de datos
         order.getItems().clear();
         purchaseOrderRepository.delete(order);
     }

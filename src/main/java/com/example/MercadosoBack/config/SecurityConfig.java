@@ -20,6 +20,7 @@ public class SecurityConfig {
     private static final String[] WHITE_LIST_URL = {"/auth/**",
             "/google-drive/**",
             "/shopping-cart/**",
+            "/chat/**",
             "/products/**",
             "/**",
             "/auth/login",

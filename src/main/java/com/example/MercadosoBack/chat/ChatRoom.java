@@ -1,21 +1,23 @@
 package com.example.MercadosoBack.chat;
 
-import jakarta.persistence.*;
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.*;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Document
+@Document(collection = "chatRooms")
 public class ChatRoom {
     @Id
     private String id;
-    private String chatId;
-    private String senderId;
-    private String recipientId;
-
+    private String sellerId;
+    private String buyerId;
+    private String productId;
+    private List<Message> messages = new ArrayList<>();
 }
